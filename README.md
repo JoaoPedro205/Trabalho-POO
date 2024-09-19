@@ -1,48 +1,110 @@
-interface `Pagavel`, que estabelece um contrato para objetos que podem ser pagos. Esta interface possui um único método abstrato chamado `pagar`, que aceita um parâmetro de tipo `double` representando o valor a ser pago. Qualquer classe que implemente a interface `Pagavel` deve fornecer uma implementação para este método, indicando que o objeto pode lidar com pagamentos.
+### Interface `Pagavel`
 
-A classe `Despesa` é uma classe abstrata que implementa a interface `Pagavel`. Como uma classe abstrata, `Despesa` não pode ser instanciada diretamente e serve como uma base para outras classes que representam categorias específicas de despesas. Esta classe possui os seguintes atributos:
-- `descricao`: uma string que descreve a despesa.
-- `valor`: um valor de ponto flutuante que representa o montante da despesa.
-- `dataVencimento`: um objeto da classe `Date` que especifica a data em que a despesa deve ser paga.
-- `categoria`: uma string que indica a categoria da despesa (como "Transporte", "Alimentação", etc.).
-- `paga`: um booleano que indica se a despesa foi paga.
+A interface `Pagavel` define um contrato para classes que representam itens que podem ser pagos. Ela possui um único método, `pagar(double valor)`, que deve ser implementado por qualquer classe que implemente a interface. Este método é responsável por marcar um item como pago e possivelmente processar o valor pago. No contexto do sistema, a interface é implementada pela classe `Despesa` e suas subclasses, garantindo que todas as despesas possam ser pagas e que o sistema trate o pagamento de maneira consistente.
 
-O construtor da classe `Despesa` inicializa esses atributos e define a despesa como não paga (`paga = false`). O método `isPaga` retorna um valor booleano indicando o estado de pagamento da despesa. O método `pagar(double valor)` é utilizado para marcar a despesa como paga e exibe uma mensagem confirmando o valor pago. A classe define um método abstrato `exibirDetalhes()`, que deve ser implementado pelas subclasses para exibir detalhes específicos da despesa. O método `toString()` fornece uma representação em string da despesa no formato CSV, o que facilita a gravação e leitura das informações em arquivos.
+### Classe `Despesa`
 
-A partir da classe `Despesa`, são definidas várias subclasses concretas que representam categorias específicas de despesas. Cada uma dessas subclasses herda da classe `Despesa` e especializa o comportamento conforme a categoria:
+A classe `Despesa` é uma classe abstrata que serve como base para as subclasses que representam classes especificas e para representar uma despesa no sistema. Armazenando informações fundamentais como a descrição da despesa, o valor, a data de vencimento e a categoria a que pertence, o atributo `paga` indica se a despesa foi quitada, seu construtor inicializa esses atributos e define o estado de `paga` como `false` por padrão. O método `isPaga()` retorna se a despesa foi paga ou não, e o método `pagar(double valor)` atualiza o status para pago, imprimindo uma mensagem com o valor pago. O método `exibirDetalhes()` é abstrato, o que significa que deve ser implementado pelas subclasses para fornecer detalhes específicos sobre a despesa. O método `toString()` retorna uma representação da despesa em formato de string, com os atributos separados por ponto e vírgula.
 
-- **`Transporte`**: Representa despesas relacionadas ao transporte. O construtor define a categoria como "Transporte". O método `exibirDetalhes()` imprime uma mensagem com os detalhes da despesa, incluindo a descrição, valor e data de vencimento.
+### Classe `Transporte`
 
-- **`Alimentacao`**: Representa despesas com alimentação. O construtor define a categoria como "Alimentacao". O método `exibirDetalhes()` é implementado para fornecer uma descrição detalhada da despesa de alimentação.
+A classe `Transporte` é uma subclasse de `Despesa` que representa despesas relacionadas a transporte. Ela herda todos os atributos e métodos da classe `Despesa`, mas define a categoria da despesa como "Transporte" através do construtor, já o método `exibirDetalhes()` é implementado para mostrar informações específicas sobre a despesa de transporte, incluindo a descrição, o valor e a data de vencimento.
 
-- **`Saude`**: Representa despesas com saúde. O construtor define a categoria como "Saude". O método `exibirDetalhes()` exibe os detalhes das despesas de saúde.
+### Classe `Alimentacao`
 
-- **`Lazer`**: Representa despesas relacionadas ao lazer. O construtor define a categoria como "Lazer". O método `exibirDetalhes()` fornece uma descrição detalhada das despesas de lazer.
+A classe `Alimentacao` é uma subclasse de `Despesa` que lida com despesas relacionadas a alimentação, sendo similar à classe `Transporte`, ela herda da classe `Despesa` e configura a categoria como "Alimentacao". O método `exibirDetalhes()` é implementado para exibir os detalhes da despesa de alimentação, como a descrição, o valor e a data de vencimento.
 
-- **`Moradia`**: Representa despesas de moradia. O construtor define a categoria como "Moradia". O método `exibirDetalhes()` mostra os detalhes das despesas de moradia.
+### Classe `Saude`
 
-Cada uma dessas subclasses utiliza o método `exibirDetalhes()` para personalizar a forma como os detalhes da despesa são apresentados, de acordo com a categoria específica.
+A classe `Saude` é uma subclasse de `Despesa` destinada a despesas com saúde, herda da classe `Despesa`, definindo a categoria como "Saude". O método `exibirDetalhes()` é implementado para mostrar os detalhes da despesa de saúde, incluindo a descrição, o valor e a data de vencimento.
 
-A classe `Usuario` é responsável por gerenciar as informações dos usuários do sistema. Ela inclui atributos para armazenar o login e a senha criptografada do usuário. O construtor da classe `Usuario` inicializa esses atributos e utiliza o método `criptografarSenha` para criar uma versão criptografada da senha, que neste caso é simplesmente a senha revertida (uma técnica de criptografia muito básica). A classe oferece métodos para obter o login e a senha criptografada. Além disso, inclui métodos estáticos para salvar e listar usuários em arquivos. O método `salvarUsuario(Usuario usuario, String caminhoArquivo)` escreve as informações do usuário em um arquivo, enquanto `listarUsuarios(String caminhoArquivo)` lê o arquivo e cria uma lista de objetos `Usuario`.
+### Classe `Lazer`
 
-A classe `TipoDespesa` gerencia os tipos de despesas disponíveis no sistema. Ela possui um atributo `nome` que representa o nome do tipo de despesa. O construtor inicializa o nome e a classe oferece métodos para obter o nome, salvar um tipo de despesa em um arquivo, listar tipos de despesas a partir de um arquivo, atualizar o nome de um tipo de despesa e excluir um tipo de despesa do arquivo. Os métodos estáticos `salvarTipoDespesa`, `listarTipos`, `atualizarTipoDespesa` e `excluirTipoDespesa` manipulam arquivos para armazenar, listar, atualizar e remover tipos de despesas, respectivamente.
+A classe `Lazer` é uma subclasse de `Despesa` que representa despesas relacionadas ao lazer. Assim como as outras subclasses, ela define a categoria como "Lazer" e implementa o método `exibirDetalhes()` para exibir as informações sobre a despesa de lazer, incluindo a descrição, o valor e a data de vencimento.
 
-Em resumo, o código organiza e gerencia informações relacionadas a despesas, usuários e tipos de despesas usando conceitos de programação orientada a objetos como herança, polimorfismo e encapsulamento. O sistema permite a criação e gerenciamento de diferentes categorias de despesas, o armazenamento de informações de usuários e tipos de despesas, e a manipulação dessas informações através de arquivos, criando uma estrutura modular e extensível para controle financeiro.
+### Classe `Moradia`
 
-O código da classe `SistemaControleDespesas` implementa um sistema para gerenciar despesas, pagamentos, tipos de despesas e usuários através de um menu interativo. O programa utiliza arquivos de texto para armazenar dados persistentes e uma interface baseada em console para interagir com o usuário.
+A classe `Moradia` é uma subclasse de `Despesa` que trata de despesas com moradia. Ela define a categoria como "Moradia" e implementa o método `exibirDetalhes()` para mostrar detalhes sobre a despesa de moradia, como a descrição, o valor e a data de vencimento.
 
-O método principal `main` inicia o programa e exibe um menu com opções para criar despesas, anotar pagamentos, listar despesas, gerenciar tipos e usuários, e editar ou excluir despesas. O loop principal mantém o programa em execução até que o usuário escolha sair, chamando métodos apropriados com base na opção selecionada.
+### Classe `Usuario`
 
-A função `criarDespesa` permite ao usuário registrar uma nova despesa, solicitando a descrição, valor, data de vencimento e categoria. Dependendo da categoria fornecida, o método `criarDespesaPorCategoria` cria uma instância específica da despesa (como Transporte, Alimentação, Saúde, Lazer ou Moradia). Essa despesa é então salva no arquivo `despesas.txt` através do método `salvarDespesa`. Se a categoria for inválida ou ocorrer algum erro, o sistema informa ao usuário.
+A classe `Usuario` representa um usuário do sistema, com informações essenciais como o login e uma senha criptografada. O construtor da classe recebe um login e uma senha, e utiliza o método `criptografarSenha(String senha)` para armazenar a senha de forma criptografada. A criptografia é realizada de forma simples, invertendo a string da senha. O método `getLogin()` retorna o login do usuário, enquanto `getSenhaCriptografada()` retorna a senha criptografada.
 
-Para listar despesas, o método `listarDespesas` lê o arquivo `despesas.txt` e exibe as despesas que correspondem ao critério de estarem pagas ou não, dependendo do parâmetro `apenasPagas`. Ele converte cada linha do arquivo em um objeto `Despesa` e chama um método para exibir seus detalhes.
+A classe oferece dois métodos estáticos para manipulação de usuários em arquivos. O método `salvarUsuario(Usuario usuario, String caminhoArquivo)` salva os dados do usuário (login e senha criptografada) em um arquivo especificado pelo caminho. Já o método `listarUsuarios(String caminhoArquivo)` lê o arquivo e cria uma lista de objetos `Usuario` a partir das informações armazenadas, onde cada linha do arquivo contém um login e uma senha criptografada separados por ponto e vírgula.
 
-O método `anotarPagamento` registra o pagamento de uma despesa. Ele carrega todas as despesas existentes, solicita a descrição da despesa a ser paga e o valor pago. Se o valor pago for suficiente para cobrir a despesa, o método `pagar` da despesa é chamado, e o pagamento é registrado no arquivo `pagamentos.txt`. As despesas atualizadas são então salvas de volta no arquivo `despesas.txt`.
+### Classe `TipoDespesa`
 
-O método `registrarPagamento` adiciona o registro do pagamento no arquivo `pagamentos.txt`, incluindo a descrição da despesa, o valor pago e a data do pagamento. Para garantir a persistência dos dados, o método `carregarDespesas` lê todas as despesas do arquivo `despesas.txt` e as armazena em uma lista, enquanto o método `salvarTodasDespesas` reescreve o arquivo com os dados atualizados.
+A classe `TipoDespesa` representa os tipos de despesas disponíveis no sistema. Cada objeto dessa classe possui um atributo `nome` que descreve o tipo de despesa. O construtor da classe inicializa o nome do tipo de despesa, e o método `getNome()` retorna esse nome.
 
-A gestão dos tipos de despesas é tratada pelo método `gerenciarTiposDespesa`, que exibe opções para adicionar, atualizar, excluir e listar tipos de despesas. Dependendo da opção escolhida, o método chama funções correspondentes, como `TipoDespesa.salvarTipoDespesa`, `TipoDespesa.atualizarTipoDespesa`, e `TipoDespesa.excluirTipoDespesa`, garantindo que as alterações sejam salvas no arquivo `tipos_despesa.txt`.
+A classe inclui métodos estáticos para gerenciar os tipos de despesa em arquivos. O método `salvarTipoDespesa(TipoDespesa tipo, String caminhoArquivo)` adiciona um novo tipo de despesa ao arquivo especificado, escrevendo o nome do tipo de despesa. O método `listarTipos(String caminhoArquivo)` lê o arquivo e retorna uma lista de objetos `TipoDespesa`, onde cada linha do arquivo corresponde a um tipo de despesa.
 
-Da mesma forma, o método `gerenciarUsuarios` permite adicionar novos usuários e listar os usuários existentes. Utiliza métodos como `Usuario.salvarUsuario` e `Usuario.listarUsuarios` para manipular o arquivo `usuarios.txt` e exibir informações dos usuários cadastrados.
+Além disso, a classe oferece métodos para atualizar e excluir tipos de despesa. O método `atualizarTipoDespesa(ArrayList<TipoDespesa> tipos, String nomeAntigo, String nomeNovo, String caminhoArquivo)` substitui o nome antigo por um novo nome no arquivo, enquanto `excluirTipoDespesa(ArrayList<TipoDespesa> tipos, String nomeParaExcluir, String caminhoArquivo)` remove um tipo de despesa específico do arquivo.
 
-Por fim, o método `editarOuExcluirDespesa` oferece opções para editar ou excluir despesas existentes. Para editar, solicita ao usuário a nova descrição, valor e data de vencimento, e atualiza o arquivo de despesas. Para excluir, remove a despesa da lista e salva as alterações no arquivo.
+### Classe `SistemaControleDespesas`
+
+A classe `SistemaControleDespesas` é a classe principal que gerencia a execução do sistema de controle de despesas. Ela possui um menu principal que permite ao usuário realizar várias operações relacionadas às despesas, pagamentos, tipos de despesas e usuários. O sistema utiliza arquivos de texto para armazenar e recuperar informações.
+
+#### Atributos da Classe
+
+- **`ARQUIVO_DESPESAS`**: Constante que define o nome do arquivo onde as despesas são salvas.
+- **`ARQUIVO_USUARIOS`**: Constante que define o nome do arquivo onde os usuários são salvos.
+- **`ARQUIVO_TIPOS`**: Constante que define o nome do arquivo onde os tipos de despesas são armazenados.
+- **`ARQUIVO_PAGAMENTOS`**: Constante que define o nome do arquivo onde os pagamentos são registrados.
+- **`Formato_Data`**: Um formato de data para parsear e formatar datas no padrão "dd/MM/yyyy".
+
+#### Método `main`
+
+O método `main` é o ponto de entrada do programa. Ele exibe um menu principal para o usuário e executa a opção escolhida. O loop `while` continua rodando até que o usuário escolha sair. As opções disponíveis no menu incluem:
+
+1. **Entrar Despesa**: Chama o método `criarDespesa` para adicionar uma nova despesa.
+2. **Anotar Pagamento**: Chama o método `anotarPagamento` para registrar o pagamento de uma despesa.
+3. **Listar Despesas em Aberto**: Chama o método `listarDespesas` para listar todas as despesas que ainda não foram pagas.
+4. **Listar Despesas Pagas**: Chama o método `listarDespesas` para listar todas as despesas que já foram pagas.
+5. **Gerenciar Tipos de Despesa**: Chama o método `gerenciarTiposDespesa` para adicionar, atualizar, excluir ou listar tipos de despesa.
+6. **Gerenciar Usuários**: Chama o método `gerenciarUsuarios` para adicionar ou listar usuários.
+7. **Editar ou Excluir Despesa**: Chama o método `editarOuExcluirDespesa` para editar ou excluir uma despesa existente.
+8. **Sair**: Encerra o loop e fecha o programa.
+
+#### Método `criarDespesa`
+
+Este método coleta informações sobre uma nova despesa, como descrição, valor, data de vencimento e categoria. Baseado na categoria informada, o método cria uma instância da classe apropriada (`Transporte`, `Alimentacao`, `Saude`, `Lazer`, `Moradia`) e salva a despesa no arquivo `despesas.txt`.
+
+#### Método `criarDespesaPorCategoria`
+
+Este método cria um objeto `Despesa` de acordo com a categoria fornecida (por exemplo, `Transporte`, `Alimentacao`, etc.). Retorna `null` se a categoria não for reconhecida.
+
+#### Método `salvarDespesa`
+
+Salva a despesa em um arquivo de texto (`despesas.txt`), adicionando uma nova linha com os detalhes da despesa.
+
+#### Método `listarDespesas`
+
+Lê o arquivo de despesas e exibe as despesas de acordo com o status de pagamento. O parâmetro `apenasPagas` determina se apenas despesas pagas ou apenas despesas em aberto devem ser listadas.
+
+#### Método `anotarPagamento`
+
+Registra o pagamento de uma despesa específica, atualizando o status de pagamento da despesa e salvando as informações no arquivo `pagamentos.txt`. Se o valor pago for menor que o valor da despesa, o pagamento não é registrado.
+
+#### Método `registrarPagamento`
+
+Salva as informações de pagamento (descrição da despesa, valor pago e data do pagamento) no arquivo `pagamentos.txt`.
+
+#### Método `carregarDespesas`
+
+Carrega todas as despesas do arquivo `despesas.txt` e retorna uma lista de objetos `Despesa`.
+
+#### Método `salvarTodasDespesas`
+
+Substitui o conteúdo do arquivo `despesas.txt` com a lista atualizada de despesas.
+
+#### Método `gerenciarTiposDespesa`
+
+Permite adicionar, atualizar, excluir e listar tipos de despesa. Oferece um submenu que controla a permanência no menu até que o usuário decida voltar ao menu principal.
+
+#### Método `gerenciarUsuarios`
+
+Permite adicionar novos usuários e listar os usuários existentes. Também oferece a opção de voltar ao menu principal.
+
+#### Método `editarOuExcluirDespesa`
+
+Permite editar ou excluir uma despesa existente. O usuário pode atualizar informações como valor e data de vencimento, ou remover uma despesa completamente.
