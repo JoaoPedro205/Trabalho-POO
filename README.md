@@ -1,3 +1,5 @@
+##### Descrição de Funcionamento do Sistema.
+
 ### Interface `Pagavel`
 
 A interface Pagavel define um contrato para classes que representam itens que podem ser pagos. Ela possui um único método, pagar(double valor), este método é responsável por marcar um item como pago e possivelmente processar o valor pago, a interface é implementada pela classe Despesa e suas subclasses, garantindo que todas as despesas possam ser pagas e que o sistema trate o pagamento de maneira correta.
