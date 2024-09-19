@@ -1,4 +1,4 @@
-##### Descrição de Funcionamento do Sistema.
+### Descrição de Funcionamento do Sistema.
 
 ### Interface `Pagavel`
 
