@@ -28,3 +28,21 @@ A classe `Usuario` é responsável por gerenciar as informações dos usuários 
 A classe `TipoDespesa` gerencia os tipos de despesas disponíveis no sistema. Ela possui um atributo `nome` que representa o nome do tipo de despesa. O construtor inicializa o nome e a classe oferece métodos para obter o nome, salvar um tipo de despesa em um arquivo, listar tipos de despesas a partir de um arquivo, atualizar o nome de um tipo de despesa e excluir um tipo de despesa do arquivo. Os métodos estáticos `salvarTipoDespesa`, `listarTipos`, `atualizarTipoDespesa` e `excluirTipoDespesa` manipulam arquivos para armazenar, listar, atualizar e remover tipos de despesas, respectivamente.
 
 Em resumo, o código organiza e gerencia informações relacionadas a despesas, usuários e tipos de despesas usando conceitos de programação orientada a objetos como herança, polimorfismo e encapsulamento. O sistema permite a criação e gerenciamento de diferentes categorias de despesas, o armazenamento de informações de usuários e tipos de despesas, e a manipulação dessas informações através de arquivos, criando uma estrutura modular e extensível para controle financeiro.
+
+O código da classe `SistemaControleDespesas` implementa um sistema para gerenciar despesas, pagamentos, tipos de despesas e usuários através de um menu interativo. O programa utiliza arquivos de texto para armazenar dados persistentes e uma interface baseada em console para interagir com o usuário.
+
+O método principal `main` inicia o programa e exibe um menu com opções para criar despesas, anotar pagamentos, listar despesas, gerenciar tipos e usuários, e editar ou excluir despesas. O loop principal mantém o programa em execução até que o usuário escolha sair, chamando métodos apropriados com base na opção selecionada.
+
+A função `criarDespesa` permite ao usuário registrar uma nova despesa, solicitando a descrição, valor, data de vencimento e categoria. Dependendo da categoria fornecida, o método `criarDespesaPorCategoria` cria uma instância específica da despesa (como Transporte, Alimentação, Saúde, Lazer ou Moradia). Essa despesa é então salva no arquivo `despesas.txt` através do método `salvarDespesa`. Se a categoria for inválida ou ocorrer algum erro, o sistema informa ao usuário.
+
+Para listar despesas, o método `listarDespesas` lê o arquivo `despesas.txt` e exibe as despesas que correspondem ao critério de estarem pagas ou não, dependendo do parâmetro `apenasPagas`. Ele converte cada linha do arquivo em um objeto `Despesa` e chama um método para exibir seus detalhes.
+
+O método `anotarPagamento` registra o pagamento de uma despesa. Ele carrega todas as despesas existentes, solicita a descrição da despesa a ser paga e o valor pago. Se o valor pago for suficiente para cobrir a despesa, o método `pagar` da despesa é chamado, e o pagamento é registrado no arquivo `pagamentos.txt`. As despesas atualizadas são então salvas de volta no arquivo `despesas.txt`.
+
+O método `registrarPagamento` adiciona o registro do pagamento no arquivo `pagamentos.txt`, incluindo a descrição da despesa, o valor pago e a data do pagamento. Para garantir a persistência dos dados, o método `carregarDespesas` lê todas as despesas do arquivo `despesas.txt` e as armazena em uma lista, enquanto o método `salvarTodasDespesas` reescreve o arquivo com os dados atualizados.
+
+A gestão dos tipos de despesas é tratada pelo método `gerenciarTiposDespesa`, que exibe opções para adicionar, atualizar, excluir e listar tipos de despesas. Dependendo da opção escolhida, o método chama funções correspondentes, como `TipoDespesa.salvarTipoDespesa`, `TipoDespesa.atualizarTipoDespesa`, e `TipoDespesa.excluirTipoDespesa`, garantindo que as alterações sejam salvas no arquivo `tipos_despesa.txt`.
+
+Da mesma forma, o método `gerenciarUsuarios` permite adicionar novos usuários e listar os usuários existentes. Utiliza métodos como `Usuario.salvarUsuario` e `Usuario.listarUsuarios` para manipular o arquivo `usuarios.txt` e exibir informações dos usuários cadastrados.
+
+Por fim, o método `editarOuExcluirDespesa` oferece opções para editar ou excluir despesas existentes. Para editar, solicita ao usuário a nova descrição, valor e data de vencimento, e atualiza o arquivo de despesas. Para excluir, remove a despesa da lista e salva as alterações no arquivo.
