@@ -48,15 +48,15 @@ A classe SistemaControleDespesas é a classe principal que gerencia a execução
 
 #### Atributos da Classe
 
-- **ARQUIVO_DESPESA`**: Constante que define o nome do arquivo onde as despesas são salvas.
-- **ARQUIVO_USUARIOS**: Constante que define o nome do arquivo onde os usuários são salvos.
-- **ARQUIVO_TIPOS**: Constante que define o nome do arquivo onde os tipos de despesas são armazenados.
-- **ARQUIVO_PAGAMENTOS**: Constante que define o nome do arquivo onde os pagamentos são registrados.
-- **Formato_Data**: Um formato de data para parsear e formatar datas no padrão "dd/MM/yyyy".
+**ARQUIVO_DESPESA**: Define o nome do arquivo onde as despesas são salvas.
+**ARQUIVO_USUARIOS**: Define o nome do arquivo onde os usuários são salvos.
+**ARQUIVO_TIPOS**: Define o nome do arquivo onde os tipos de despesas são armazenados.
+**ARQUIVO_PAGAMENTOS**: Define o nome do arquivo onde os pagamentos são registrados.
+**Formato_Data**: Define um formato de data para parsear e formatar datas no padrão "dd/MM/yyyy".
 
-#### Método `main`
+#### Método main
 
-O método main é o ponto de entrada do programa. Ele exibe um menu principal para o usuário e executa a opção escolhida. O loop while continua rodando até que o usuário escolha sair. As opções disponíveis no menu incluem:
+Ele exibe um menu principal para o usuário e executa a opção escolhida. O loop while continua rodando até que o usuário escolha sair. As opções disponíveis no menu incluem:
 
 1. **Entrar Despesa**: Chama o método criarDespesa para adicionar uma nova despesa.
 2. **Anotar Pagamento**: Chama o método anotarPagamento para registrar o pagamento de uma despesa.
@@ -157,4 +157,3 @@ A interface do sistema é baseada em texto, onde o usuário vê um menu no conso
 #### 6. **Tratamento de Erros**
 
 O sistema foi projetado para lidar com possíveis erros, como problemas ao ler ou escrever arquivos. Se algo der errado, ele informa o usuário sobre o que aconteceu.
-
