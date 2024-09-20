@@ -85,7 +85,7 @@ Lê o arquivo de despesas e exibe as despesas de acordo com o status de pagament
 
 #### Método `anotarPagamento`
 
-Registra o pagamento de uma despesa específica, atualizando o status de pagamento da despesa e salvando as informações no arquivo pagamentos.txt. Se o valor pago for menor que o valor da despesa, o pagamento não é registrado.
+Registra o pagamento de uma despesa específica, atualizando o status de pagamento da despesa e salvando as informações no arquivo pagamentos.txt. Se o valor pago for menor que o valor da despesa, o pagamento não é registrado, além disso ele atualiza o status no arquivo despesas.txt.
 
 #### Método `registrarPagamento`
 
