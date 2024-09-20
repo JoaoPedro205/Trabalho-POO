@@ -118,31 +118,31 @@ Obs. O sistema é capaz de identificar erros, por exemplo quando uma categoria n
 #### 1. **Identificação dos Requisitos**
 
 Primeiro, foram organizados e pensadas as funções que o sistema deveria ter, Nesse caso baseado nas informações do enunciado do trabalho, ele permiti que o usuário:
-- Adicione despesas, informando detalhes como descrição, valor e data.
-- Registre pagamentos para essas despesas.
-- Liste despesas que estão abertas (não pagas) e aquelas que já foram pagas.
-- Gerencie tipos de despesas, como transporte e alimentação.
-- Adicione e gerencie usuários que poderão acessar o sistema.
+1.Adicione despesas, informando detalhes como descrição, valor e data.
+2.Registre pagamentos para essas despesas.
+3.Liste despesas que estão abertas (não pagas) e aquelas que já foram pagas.
+4.Gerencie tipos de despesas, como transporte e alimentação.
+5.Adicione e gerencie usuários que poderão acessar o sistema.
 
 #### 2. **Estrutura do Sistema**
 
 Para organizar essas funcionalidades, dividimos o sistema em diferentes partes, as classes sendo que cada uma tem um papel específico, mesmo estando todas em um mesmo arquivo:
 
-- **Classe Despesa**: Essa é a classe principal que representa uma despesa, ela é a classe generica ou abstrata. Temos subclasses que herdam dela como Transporte, Alimentacao e etc, que definem tipos específicos de despesas. Cada tipo tem características próprias.
+**Classe Despesa**: Essa é a classe principal que representa uma despesa, ela é a classe generica ou abstrata. Temos subclasses que herdam dela como Transporte, Alimentacao e etc, que definem tipos específicos de despesas. Cada tipo tem características próprias.
 
-- **Classe Usuario**: Essa classe cuida das informações dos usuários, como login e senha. As senhas são armazenadas de forma criptografada para aumentar a segurança.
+**Classe Usuario**: Essa classe cuida das informações dos usuários, como login e senha. As senhas são armazenadas de forma criptografada para aumentar a segurança.
 
-- **Classe TipoDespesa**: É responsavel por Gerenciar os diferentes tipos de despesas. Aqui, podemos adicionar, atualizar ou excluir tipos de despesas.
+**Classe TipoDespesa**: É responsavel por Gerenciar os diferentes tipos de despesas. Aqui, podemos adicionar, atualizar ou excluir tipos de despesas.
 
-- **Classe SistemaControleDespesas**: Esta é a classe principal que permite ao usuário interagir com o sistema. Ela apresenta um menu com opções, como "Adicionar Despesa", "Listar Despesas", dentre outras opções, que dentro delas ainda possuem submenus que incrementam e possibilitam o uso de funcionalidades complementares de forma organizada.
+**Classe SistemaControleDespesas**: Esta é a classe principal que permite ao usuário interagir com o sistema. Ela apresenta um menu com opções, como "Adicionar Despesa", "Listar Despesas", dentre outras opções, que dentro delas ainda possuem submenus que incrementam e possibilitam o uso de funcionalidades complementares de forma organizada.
 
 #### 3. **Armazenamento dos Dados**
 
 Os dados são armazenados em arquivos de texto os aquivos são:
-- **Despesas**: Armazena todas as despesas registradas.
-- **Usuários**: Guarda os dados dos usuários do sistema.
-- **Tipos de Despesas**: Lista os tipos de despesas incluidas pelo usuário.
-- **Pagamentos**: Registra os pagamentos feitos.
+**Despesas**: Armazena todas as despesas registradas.
+**Usuários**: Guarda os dados dos usuários do sistema.
+**Tipos de Despesas**: Lista os tipos de despesas incluidas pelo usuário.
+**Pagamentos**: Registra os pagamentos feitos.
 
 Esses arquivos facilitam a leitura e a escrita de informações, para as consultas dos usuários.
 
